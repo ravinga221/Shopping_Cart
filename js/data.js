@@ -49,6 +49,38 @@ const DEFAULT_PRODUCTS = [
         categoryId: '3'
     },
     {
+        id: '20',
+        name: 'Fruit Cake',
+        price: 1800,
+        description: 'Traditional fruit cake packed with premium dried fruits and nuts.',
+        imageUrl: 'https://i.pinimg.com/736x/7f/dd/31/7fdd31a3d4ad8b96617be6a62d092b3f.jpg',
+        categoryId: '3'
+    },
+    {
+        id: '21',
+        name: 'Butter Cake',
+        price: 1200,
+        description: 'Classic rich and moist butter cake, perfect for any occasion.',
+        imageUrl: 'https://i.pinimg.com/1200x/ad/64/b3/ad64b3ecc203dcdcecfeee40a4b2ff36.jpg',
+        categoryId: '3'
+    },
+    {
+        id: '22',
+        name: 'Ribbon Cake',
+        price: 1600,
+        description: 'Beautiful multi-layered ribbon cake with a velvety texture.',
+        imageUrl: 'https://i.pinimg.com/1200x/88/69/87/8869873f3c98e1bfd7549a61a5aaa3b3.jpg',
+        categoryId: '3'
+    },
+    {
+        id: '23',
+        name: 'Red Velvet Cake',
+        price: 2200,
+        description: 'Elegant red velvet cake with a smooth cream cheese frosting flavor.',
+        imageUrl: 'https://i.pinimg.com/1200x/62/9e/45/629e4501f6b221413c7f468d5c96f074.jpg',
+        categoryId: '3'
+    },
+    {
         id: '6',
         name: 'Chocolate Chip Cookies',
         price: 200,
