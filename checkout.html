@@ -53,7 +53,7 @@
 
                 <div class="border-t border-gray-200 pt-6 flex justify-between items-center mb-8">
                     <span class="text-gray-600 font-semibold">Total Amount</span>
-                    <span id="checkoutTotalAmount" class="text-3xl font-bold text-primary">$0.00</span>
+                    <span id="checkoutTotalAmount" class="text-3xl font-bold text-primary">LKR 0.00</span>
                 </div>
 
                 <div class="bg-yellow-50 border border-secondary text-yellow-800 rounded-lg p-4 mb-8 flex items-start space-x-3 shadow-sm">
@@ -102,14 +102,14 @@
                                     <p class="text-xs text-gray-500">Qty: ${item.quantity}</p>
                                 </div>
                             </div>
-                            <span class="font-semibold text-gray-700">$${itemTotal}</span>
+                            <span class="font-semibold text-gray-700">LKR ${itemTotal}</span>
                         `;
                         listEl.appendChild(div);
                     }
                 });
             }
 
-            totalEl.textContent = `$${getCartTotal().toFixed(2)}`;
+            totalEl.textContent = `LKR ${getCartTotal().toFixed(2)}`;
             
             // Clear cart after reaching checkout for demo purposes
             saveCart([]);
