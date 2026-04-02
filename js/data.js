@@ -227,26 +227,37 @@ const DEFAULT_PRODUCTS = [
 ];
 
 function initData() {
-    if (!localStorage.getItem('categories')) {
+    const DATA_VERSION = '1.2'; // Increment this to force a reset/sync
+    
+    // Check for version mismatch to force a clean update of defaults
+    if (!localStorage.getItem('dataVersion') || localStorage.getItem('dataVersion') !== DATA_VERSION) {
         localStorage.setItem('categories', JSON.stringify(DEFAULT_CATEGORIES));
-    }
-    if (!localStorage.getItem('products')) {
         localStorage.setItem('products', JSON.stringify(DEFAULT_PRODUCTS));
+        localStorage.setItem('dataVersion', DATA_VERSION);
     } else {
-        // Sync new image URLs from DEFAULT_PRODUCTS to existing localStorage products
-        let storedProducts = JSON.parse(localStorage.getItem('products'));
-        DEFAULT_PRODUCTS.forEach(defaultProd => {
-            let existingProd = storedProducts.find(p => p.id === defaultProd.id);
-            if (existingProd) {
-                // Sync price and image URL if they have changed in DEFAULT_PRODUCTS
-                existingProd.price = defaultProd.price;
-                existingProd.imageUrl = defaultProd.imageUrl;
-            } else {
-                storedProducts.push(defaultProd);
-            }
-        });
-        localStorage.setItem('products', JSON.stringify(storedProducts));
+        // Normal initialization if version matches
+        if (!localStorage.getItem('categories')) {
+            localStorage.setItem('categories', JSON.stringify(DEFAULT_CATEGORIES));
+        }
+        if (!localStorage.getItem('products')) {
+            localStorage.setItem('products', JSON.stringify(DEFAULT_PRODUCTS));
+        } else {
+            // Incremental sync for existing products (to catch price/image updates)
+            let storedProducts = JSON.parse(localStorage.getItem('products'));
+            DEFAULT_PRODUCTS.forEach(defaultProd => {
+                let existingProd = storedProducts.find(p => p.id === defaultProd.id);
+                if (existingProd) {
+                    existingProd.price = defaultProd.price;
+                    existingProd.imageUrl = defaultProd.imageUrl;
+                } else {
+                    storedProducts.push(defaultProd);
+                }
+            });
+            localStorage.setItem('products', JSON.stringify(storedProducts));
+        }
     }
+    
+    // Initialize other state
     if (!localStorage.getItem('cart')) {
         localStorage.setItem('cart', JSON.stringify([]));
     }
@@ -254,7 +265,7 @@ function initData() {
         localStorage.setItem('isLoggedIn', 'false');
     }
     if (localStorage.getItem('isAdmin') === null) {
-        localStorage.setItem('isAdmin', 'false'); // Set to true to test admin easily
+        localStorage.setItem('isAdmin', 'false');
     }
 }
 
