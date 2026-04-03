@@ -93,7 +93,7 @@ const DEFAULT_PRODUCTS = [
         name: 'Cream Crackers',
         price: 150,
         description: 'Crispy and light sugar-free cream crackers, perfect with tea.',
-        imageUrl: 'https://i.pinimg.com/1200x/6d/46/8a/6d468a417e29689f81da701f01657688.jpg',
+        imageUrl: 'https://i.pinimg.com/736x/62/3a/e7/623ae771d5bbf049f3b3a39e4a6770a0.jpg',
         categoryId: '4'
     },
     {
@@ -101,7 +101,7 @@ const DEFAULT_PRODUCTS = [
         name: 'Marie Biscuits',
         price: 100,
         description: 'Classic crunchy Marie biscuits, a favorite for all ages.',
-        imageUrl: 'https://i.pinimg.com/1200x/2d/8e/3c/2d8e3c45738090771239f88c8868c2d2.jpg',
+        imageUrl: 'https://i.pinimg.com/736x/7d/23/18/7d23186cd1e309e0976d27521ecab57e.jpg',
         categoryId: '4'
     },
     {
@@ -109,7 +109,7 @@ const DEFAULT_PRODUCTS = [
         name: 'Lemon Puff',
         price: 180,
         description: 'Zesty lemon cream sandwiched between two crispy biscuits.',
-        imageUrl: 'https://i.pinimg.com/736x/ef/22/01/ef2201b87a8089856f685741870183b2.jpg',
+        imageUrl: 'https://i.pinimg.com/1200x/af/18/8a/af188a0facca80087d59e65884de0ed1.jpg',
         categoryId: '4'
     },
     {
@@ -117,7 +117,7 @@ const DEFAULT_PRODUCTS = [
         name: 'Ginger Biscuits',
         price: 160,
         description: 'Spicy and crunchy ginger biscuits with a hint of sweetness.',
-        imageUrl: 'https://i.pinimg.com/1200x/9d/9e/42/9d9e42880775cf015a8870183b28c3b2.jpg',
+        imageUrl: 'https://i.pinimg.com/736x/98/7b/a5/987ba5708517477d04e18ae8e7253424.jpg',
         categoryId: '4'
     },
     {

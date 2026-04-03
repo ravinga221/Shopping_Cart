@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FreshMart</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#166534',
+                        secondary: '#84CC16',
+                        neutralBg: '#F3F4F6',
+                        neutralTextMain: '#1F2937',
+                        neutralTextMuted: '#6B7280',
+                        neutralCard: '#FFFFFF'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-neutralBg min-h-screen flex items-center justify-center p-4">
+
+    <!-- Login Container -->
+    <div class="max-w-md w-full glass rounded-3xl shadow-2xl p-8 transform transition-all duration-300 hover:scale-[1.01]">
+        
+        <!-- Logo/Header -->
+        <div class="text-center mb-10">
+            <a href="index.html" class="inline-block mb-2">
+                <span class="text-3xl font-bold text-primary tracking-tight">FreshMart</span>
+            </a>
+            <p class="text-neutralTextMuted">Quality Produce, Delivered Fresh.</p>
+        </div>
+
+        <!-- Role Toggle (Tabs) -->
+        <div class="flex bg-gray-100 p-1 rounded-xl mb-8">
+            <button id="userTab" class="flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-200 bg-white shadow-sm text-primary">User Login</button>
+            <button id="adminTab" class="flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-200 text-neutralTextMuted hover:text-primary">Admin Login</button>
+        </div>
+
+        <!-- Login Form Area -->
+        <div id="loginFormContainer" class="space-y-6">
+            
+            <!-- Standard Form (Simulated) -->
+            <form id="traditionalLoginForm" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-neutralTextMain mb-1">Email Address</label>
+                    <input type="email" id="email" required placeholder="name@example.com" 
+                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+                </div>
+                <div id="passwordField">
+                    <label for="password" class="block text-sm font-medium text-neutralTextMain mb-1">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••" 
+                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+                </div>
+                <button type="submit" class="w-full bg-primary text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:bg-green-800 transform transition active:scale-95">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Social Login Divider -->
+            <div class="relative py-4" id="socialDivider">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="bg-transparent px-2 text-neutralTextMuted">Or continue with</span>
+                </div>
+            </div>
+
+            <!-- Social Auth Buttons -->
+            <div class="grid grid-cols-2 gap-4" id="socialActions">
+                <button onclick="handleSocial('Google')" class="flex items-center justify-center px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 transition active:scale-95">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5 w-5 mr-3" alt="Google">
+                    <span class="text-sm font-medium">Google</span>
+                </button>
+                <button onclick="handleSocial('Facebook')" class="flex items-center justify-center px-4 py-2 border border-blue-100 bg-[#E7F1FF] text-[#1877F2] rounded-xl hover:bg-blue-100 transition active:scale-95">
+                    <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="h-5 w-5 mr-3" alt="Facebook">
+                    <span class="text-sm font-medium">Facebook</span>
+                </button>
+            </div>
+
+            <!-- Passkey Button -->
+            <button onclick="handleSocial('Passkey')" id="passkeyBtn" class="w-full flex items-center justify-center px-4 py-3 bg-gray-900 text-white rounded-xl hover:bg-black transition active:scale-95">
+                <svg class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                </svg>
+                <span class="font-medium text-sm">Sign in with Passkey</span>
+            </button>
+        </div>
+
+        <!-- Footer Links -->
+        <div id="signupPrompt" class="mt-10 text-center">
+            <p class="text-sm text-neutralTextMuted">
+                Don't have an account? 
+                <a href="register.html" class="text-primary font-bold hover:underline">Create Account</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script>
+        let currentRole = 'user';
+
+        // Tab Switching Logic
+        const userTab = document.getElementById('userTab');
+        const adminTab = document.getElementById('adminTab');
+        const socialActions = document.getElementById('socialActions');
+        const socialDivider = document.getElementById('socialDivider');
+        const passkeyBtn = document.getElementById('passkeyBtn');
+        const signupPrompt = document.getElementById('signupPrompt');
+
+        userTab.addEventListener('click', () => setRole('user'));
+        adminTab.addEventListener('click', () => setRole('admin'));
+
+        function setRole(role) {
+            currentRole = role;
+            if (role === 'admin') {
+                adminTab.classList.add('bg-white', 'shadow-sm', 'text-primary');
+                adminTab.classList.remove('text-neutralTextMuted');
+                userTab.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+                userTab.classList.add('text-neutralTextMuted');
+                
+                // Admins typically use credentials, hide social/signup for admin focus
+                socialActions.classList.add('hidden');
+                socialDivider.classList.add('hidden');
+                passkeyBtn.classList.add('hidden');
+                signupPrompt.classList.add('invisible');
+            } else {
+                userTab.classList.add('bg-white', 'shadow-sm', 'text-primary');
+                userTab.classList.remove('text-neutralTextMuted');
+                adminTab.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+                adminTab.classList.add('text-neutralTextMuted');
+                
+                socialActions.classList.remove('hidden');
+                socialDivider.classList.remove('hidden');
+                passkeyBtn.classList.remove('hidden');
+                signupPrompt.classList.remove('invisible');
+            }
+        }
+
+        // Form Submission
+        const loginForm = document.getElementById('traditionalLoginForm');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            Auth.login('Credentials', currentRole);
+            redirectUser();
+        });
+
+        // Social Login
+        window.handleSocial = (provider) => {
+            Auth.login(provider, currentRole);
+            redirectUser();
+        };
+
+        function redirectUser() {
+            if (currentRole === 'admin') {
+                window.location.href = 'admin.html';
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

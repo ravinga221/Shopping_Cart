@@ -30,10 +30,11 @@
 <body class="bg-neutralBg text-neutralTextMain min-h-screen flex flex-col">
 
     <!-- Auth check script before rendering content to prevent flashing -->
+    <script src="js/auth.js"></script>
     <script>
-        if (localStorage.getItem('isAdmin') !== 'true') {
-            alert('Unauthorized Access. Redirecting to home.');
-            window.location.href = 'index.html';
+        if (!Auth.isAdmin()) {
+            alert('Unauthorized Access. Admins only.');
+            window.location.href = 'login.html';
         }
     </script>
 
@@ -150,11 +151,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Setup logout for Admin
-            document.getElementById('loginBtn').addEventListener('click', () => {
-                localStorage.setItem('isAdmin', 'false');
-                localStorage.setItem('isLoggedIn', 'false');
-                window.location.href = 'index.html';
-            });
+            const logoutBtn = document.getElementById('loginBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    Auth.logout();
+                });
+            }
             renderAdminView();
         });
 

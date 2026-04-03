@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - FreshMart</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#166534',
+                        secondary: '#84CC16',
+                        neutralBg: '#F3F4F6',
+                        neutralTextMain: '#1F2937',
+                        neutralTextMuted: '#6B7280',
+                        neutralCard: '#FFFFFF'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-neutralBg min-h-screen flex items-center justify-center p-4">
+
+    <!-- Register Container -->
+    <div class="max-w-md w-full glass rounded-3xl shadow-2xl p-8 transform transition-all duration-300 hover:scale-[1.01]">
+        
+        <!-- Logo/Header -->
+        <div class="text-center mb-8">
+            <a href="index.html" class="inline-block mb-2">
+                <span class="text-3xl font-bold text-primary tracking-tight">FreshMart</span>
+            </a>
+            <h2 class="text-2xl font-bold text-neutralTextMain mt-2">Create Account</h2>
+            <p class="text-neutralTextMuted mt-1">Join the fresh food revolution!</p>
+        </div>
+
+        <!-- Registration Form (Simulated) -->
+        <form id="registrationForm" class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="firstName" class="block text-sm font-medium text-neutralTextMain mb-1">First Name</label>
+                    <input type="text" id="firstName" required placeholder="John" 
+                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+                </div>
+                <div>
+                    <label for="lastName" class="block text-sm font-medium text-neutralTextMain mb-1">Last Name</label>
+                    <input type="text" id="lastName" required placeholder="Doe" 
+                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+                </div>
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-neutralTextMain mb-1">Email Address</label>
+                <input type="email" id="email" required placeholder="john@example.com" 
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-neutralTextMain mb-1">Password</label>
+                <input type="password" id="password" required placeholder="Min 8 characters" 
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+            </div>
+            <div class="flex items-center space-x-2 py-2">
+                <input type="checkbox" id="terms" required class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                <label for="terms" class="text-xs text-neutralTextMuted">
+                    By creating an account, I agree to the 
+                    <a href="#" class="text-primary font-semibold hover:underline">Terms of Service</a> and 
+                    <a href="#" class="text-primary font-semibold hover:underline">Privacy Policy</a>
+                </label>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:bg-green-800 transform transition active:scale-95 mt-4">
+                Create Account
+            </button>
+        </form>
+
+        <!-- Social Login Divider -->
+        <div class="relative py-6">
+            <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+                <span class="bg-transparent px-2 text-neutralTextMuted">Or join with</span>
+            </div>
+        </div>
+
+        <!-- Social Auth Buttons -->
+        <div class="grid grid-cols-2 gap-4">
+            <button onclick="handleSocial('Google')" class="flex items-center justify-center px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 transition active:scale-95">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5 w-5 mr-3" alt="Google">
+                <span class="text-sm font-medium">Google</span>
+            </button>
+            <button onclick="handleSocial('Facebook')" class="flex items-center justify-center px-4 py-2 border border-blue-100 bg-[#E7F1FF] text-[#1877F2] rounded-xl hover:bg-blue-100 transition active:scale-95">
+                <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="h-5 w-5 mr-3" alt="Facebook">
+                <span class="text-sm font-medium">Facebook</span>
+            </button>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="mt-8 text-center border-t border-gray-100 pt-6">
+            <p class="text-sm text-neutralTextMuted">
+                Already have an account? 
+                <a href="login.html" class="text-primary font-bold hover:underline">Sign In Instead</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script>
+        const registrationForm = document.getElementById('registrationForm');
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            Auth.register({ email: email });
+            window.location.href = 'index.html';
+        });
+
+        window.handleSocial = (provider) => {
+            Auth.login(provider, 'user');
+            window.location.href = 'index.html';
+        };
+    </script>
+</body>
+</html>

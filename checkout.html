@@ -28,6 +28,14 @@
     </style>
 </head>
 <body class="bg-neutralBg text-neutralTextMain min-h-screen flex flex-col">
+    <!-- Auth Check -->
+    <script src="js/auth.js"></script>
+    <script>
+        if (!Auth.isLoggedIn()) {
+            alert('Please login to view your order summary.');
+            window.location.href = 'login.html';
+        }
+    </script>
 
     <!-- Header -->
     <header class="bg-primary text-white sticky top-0 z-40 shadow-md">
