@@ -29,6 +29,7 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 <body class="bg-neutralBg text-neutralTextMain min-h-screen flex flex-col">
 
@@ -53,7 +54,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow container mx-auto px-4 py-8">
+    <main class="flex-grow container mx-auto px-4 py-8 animate-fade-in">
         <!-- Category Filter -->
         <div class="mb-8">
             <h2 class="text-xl font-bold mb-4 text-primary">Categories</h2>
@@ -126,9 +127,10 @@
                     return;
                 }
 
-                filtered.forEach(product => {
+                filtered.forEach((product, index) => {
                     const card = document.createElement('div');
-                    card.className = "bg-neutralCard border border-gray-100 rounded-xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 overflow-hidden flex flex-col";
+                    const staggerClass = index < 4 ? `stagger-${index + 1}` : '';
+                    card.className = `bg-neutralCard border border-gray-100 rounded-xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 overflow-hidden flex flex-col animate-scale-in ${staggerClass}`;
                     card.innerHTML = `
                         <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-48 object-cover">
                         <div class="p-4 flex flex-col flex-grow">
